@@ -13,7 +13,7 @@ class GameController {
   }
 
   setPlayerNumbers(boundFunction) {
-    this.#baseballGame.setPlayerNumbers(boundFunction);
+    const result = this.#baseballGame.playSingleRound(boundFunction);
   }
 }
 
