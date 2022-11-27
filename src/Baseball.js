@@ -5,14 +5,22 @@ class Baseball {
   #count = { strike: 0, ball: 0 };
 
   getResult(computerNumbers, playerNumbers) {
-    if (computerNumbers === playerNumbers) return `${DIGIT}${STRIKE}`;
+    const isSuccess = computerNumbers.join() === playerNumbers.join();
+
+    const resultMessage = this.getResultMessage(computerNumbers, playerNumbers, isSuccess);
+
+    return { isSuccess, resultMessage };
+  }
+
+  getResultMessage(computerNumbers, playerNumbers, isSuccess) {
+    if (isSuccess) return `${DIGIT}${STRIKE}`;
 
     this.addCount(computerNumbers, playerNumbers);
 
     const { isNothing } = this.judgeNothing();
     if (isNothing) return NOTHING;
 
-    return this.getStrikeAndBallResult();
+    return this.getStrikeAndBallResultMessage();
   }
 
   addCount(computerNumbers, playerNumbers) {
@@ -37,7 +45,7 @@ class Baseball {
     return { isNothing };
   }
 
-  getStrikeAndBallResult() {
+  getStrikeAndBallResultMessage() {
     const { strike, ball } = this.#count;
     const strikeResult = `${strike}${STRIKE}`;
     const ballResult = `${ball}${BALL}`;

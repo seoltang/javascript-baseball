@@ -1,5 +1,6 @@
 const BaseballGame = require('./BaseballGame');
 const { readPlayerNumbers } = require('./InputView');
+const { printBaseballResult } = require('./OutputView');
 
 class GameController {
   #baseballGame;
@@ -9,11 +10,13 @@ class GameController {
   }
 
   handlePlayerNumbers() {
-    readPlayerNumbers(this.setPlayerNumbers.bind(this));
+    readPlayerNumbers(this.playSingleRound.bind(this));
   }
 
-  setPlayerNumbers(boundFunction) {
-    const result = this.#baseballGame.playSingleRound(boundFunction);
+  playSingleRound(boundFunction) {
+    const { isSuccess, resultMessage } = this.#baseballGame.playSingleRound(boundFunction);
+
+    printBaseballResult(isSuccess, resultMessage);
   }
 }
 

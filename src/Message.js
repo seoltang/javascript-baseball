@@ -8,7 +8,7 @@ const Message = {
 
   output: {
     GAME_START: '숫자 야구 게임을 시작합니다.\n',
-    GAME_OVER: `${DIGIT}개의 숫자를 모두 맞히셨습니다! 게임 종료\n`,
+    GAME_END: `\n${DIGIT}개의 숫자를 모두 맞히셨습니다! 게임 종료`,
     BALL: '볼',
     STRIKE: '스트라이크',
     NOTHING: '낫싱',
