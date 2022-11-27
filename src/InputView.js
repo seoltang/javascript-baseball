@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { PLAYER_NUMBERS } = require('./Message').input;
+const { PLAYER_NUMBERS, GAME_COMMAND } = require('./Message').input;
 
 const InputView = {
   readInput(message, callback) {
@@ -10,6 +10,10 @@ const InputView = {
 
   readPlayerNumbers(setPlayerNumbers) {
     InputView.readInput(PLAYER_NUMBERS, setPlayerNumbers);
+  },
+
+  readGameCommand(decideToRetryOrQuit) {
+    InputView.readInput(GAME_COMMAND, decideToRetryOrQuit);
   },
 };
 

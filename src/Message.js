@@ -3,7 +3,7 @@ const { DIGIT, COMMAND } = require('./settings');
 const Message = {
   input: {
     PLAYER_NUMBERS: '숫자를 입력해주세요 : ',
-    RETRY_OR_QUIT: `게임을 새로 시작하려면 ${COMMAND.retry}, 종료하려면 ${COMMAND.quit}를 입력하세요.`,
+    GAME_COMMAND: `게임을 새로 시작하려면 ${COMMAND.retry}, 종료하려면 ${COMMAND.quit}를 입력하세요.\n`,
   },
 
   output: {
