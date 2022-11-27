@@ -13,10 +13,10 @@ class GameController {
 
   start() {
     printStart();
-    this.readNumbers();
+    this.readPlayerNumbers();
   }
 
-  readNumbers() {
+  readPlayerNumbers() {
     readPlayerNumbers(this.playSingleRound.bind(this));
   }
 
@@ -29,39 +29,43 @@ class GameController {
 
   continueOrStop(isSuccess) {
     if (isSuccess) {
-      this.decideToRetryOrQuit();
+      this.readGameCommand();
       return;
     }
 
-    this.readNumbers();
+    this.readPlayerNumbers();
   }
 
-  decideToRetryOrQuit() {
+  readGameCommand() {
     readGameCommand(this.retryOrQuit.bind(this));
   }
 
-  retryOrQuit(gameCommand) {
+  static decideToRetryOrQuit(gameCommand) {
     const isRetry = gameCommand === COMMAND.retry;
+    const isQuit = gameCommand === COMMAND.quit;
+
+    return { isRetry, isQuit };
+  }
+
+  retryOrQuit(gameCommand) {
+    const { isRetry, isQuit } = GameController.decideToRetryOrQuit(gameCommand);
 
     if (isRetry) {
       this.retry();
       return;
     }
 
-    GameController.quit();
+    if (isQuit) GameController.quit();
   }
 
   retry() {
     this.#baseballGame = new BaseballGame();
-    this.readNumbers();
+    this.readPlayerNumbers();
   }
 
   static quit() {
     Console.close();
   }
 }
-
-const game = new GameController();
-game.start();
 
 module.exports = GameController;
